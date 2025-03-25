@@ -6,6 +6,7 @@ def getleft():
     while left <= right:
         mid = (left + right) // 2
 
+        # 寻找左边界，nums[middle] == target的时候更新right
         if nums[mid] >= target:
             right = mid - 1
         else:
@@ -19,6 +20,7 @@ def getright():
     while left <= right:
         mid = (left + right) // 2
 
+        # 寻找右边界，nums[middle] == target的时候更新left
         if nums[mid] <= target:
             left = mid + 1
         else:
@@ -32,3 +34,4 @@ if left <= right:
     return [left, right]
 else:
     return [-1, -1]
+
