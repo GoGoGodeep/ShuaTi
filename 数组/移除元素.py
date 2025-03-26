@@ -1,5 +1,5 @@
 def removeElement(self, nums: List[int], val: int) -> int:
-    # 快慢指针法
+    # 快慢指针法 
     fast = slow = 0
     
     while fast < len(nums):     # 不加等于是因为，a = size 时，nums[a] 会越界
