@@ -7,7 +7,7 @@ def isPerfectSquare(self, num: int) -> bool:
         if mid * mid < num:
             left = mid + 1
         elif mid * mid > num:
-            right = mid - 1
+            right = mid - 1 
         else:
             return True
     
