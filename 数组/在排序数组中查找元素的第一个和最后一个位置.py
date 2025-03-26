@@ -1,6 +1,6 @@
 # 还是leetcode的写法简单
 
-def getleft():
+def getleft(): 
     left, right = 0, len(nums) - 1
 
     while left <= right:
