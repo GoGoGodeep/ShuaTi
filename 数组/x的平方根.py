@@ -1,5 +1,5 @@
 def mySqrt(self, x: int) -> int:
-    left, right = 0, x
+    left, right = 0, x 
 
     while left <= right:
         mid = (left + right) // 2
