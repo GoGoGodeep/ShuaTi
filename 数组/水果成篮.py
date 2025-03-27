@@ -1,6 +1,6 @@
 def totalFruit(self, fruits: List[int]) -> int:
     from collections import Counter
-
+ 
     counter = Counter()
 
     left = 0
