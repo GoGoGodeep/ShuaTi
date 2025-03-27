@@ -22,3 +22,25 @@
 9
 数据范围：0 < n <= 100000
 """
+import sys
+
+
+def main():
+    n = int(sys.stdin.readline())
+    arr = [int(sys.stdin.readline()) for _ in range(n)]
+
+    # 构建前缀和数组
+    pre_sum = [0] * (n + 1)
+    for i in range(1, n + 1):
+        pre_sum[i] = pre_sum[i - 1] + arr[i - 1]
+
+    # 处理每个查询
+    for line in sys.stdin:
+        line = line.strip().split()
+        left, right = int(line[0]), int(line[1])
+        res = pre_sum[right + 1] - pre_sum[left]
+        print(res)
+
+
+if __name__ == "__main__":
+    main()
