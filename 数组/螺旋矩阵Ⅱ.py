@@ -3,7 +3,7 @@ def generateMatrix(self, n: int) -> List[List[int]]:
 
     left = top = 0
     right = bottom = n - 1
-
+ 
     num = 1
 
     while left <= right and top <= bottom:
