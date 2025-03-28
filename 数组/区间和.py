@@ -23,7 +23,7 @@
 数据范围：0 < n <= 100000
 """
 import sys
-
+ 
 n = int(sys.stdin.readline())
 
 nums = []
