@@ -24,23 +24,20 @@
 """
 import sys
 
- 
-def main():
-    n = int(sys.stdin.readline())
-    arr = [int(sys.stdin.readline()) for _ in range(n)]
+n = int(sys.stdin.readline())
 
-    # 构建前缀和数组
-    pre_sum = [0] * (n + 1)
-    for i in range(1, n + 1):
-        pre_sum[i] = pre_sum[i - 1] + arr[i - 1]
+nums = []
+for _ in range(n):
+    nums.append(int(sys.stdin.readline()))
 
-    # 处理每个查询
-    for line in sys.stdin:
-        line = line.strip().split()
-        left, right = int(line[0]), int(line[1])
-        res = pre_sum[right + 1] - pre_sum[left]
-        print(res)
+# 前缀和数组，第一个为0，便于计算
+pre = [0] * (n + 1)
 
+for i in range(n):
+    pre[i+1] = pre[i] + nums[i]
 
-if __name__ == "__main__":
-    main()
+for line in sys.stdin:
+    line = list(line.strip().split())
+
+    left, right = int(line[0]), int(line[1])
+    print(pre[right+1] - pre[left])
