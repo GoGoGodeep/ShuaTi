@@ -10,6 +10,7 @@ def removeElement(self, nums: List[int], val: int) -> int:
         fast += 1
     
     return slow
+    
 
 # 双指针法
 class Solution:
