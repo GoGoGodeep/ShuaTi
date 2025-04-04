@@ -1,36 +1,49 @@
 # https://mp.weixin.qq.com/s/BjYgrBwnCnq32UXeuSaVsg
 
-def compute_coordinates(n):
-    """ 计算二叉树中每个节点的坐标 """
-    coordinates = {1: (0, 0)}  # 根节点坐标
-    for i in range(2, n + 1):
-        parent = i // 2  # 父节点编号
-        a, b = coordinates[parent]  # 获取父节点坐标
-        if i % 2 == 0:
-            coordinates[i] = (a - 1, b - 1)  # 左子节点
-        else:
-            coordinates[i] = (a + 1, b - 1)  # 右子节点
-    return coordinates
+from collections import deque
+import sys
 
-def manhattan_distance(coord1, coord2):
-    """ 计算曼哈顿距离 """
-    x1, y1 = coord1
-    x2, y2 = coord2
-    return abs(x1 - x2) + abs(y1 - y2)
+input = sys.stdin.readline
 
-def process_queries(n, queries):
-    """ 计算所有查询的曼哈顿距离 """
-    coordinates = compute_coordinates(n)
-    results = []
-    for u, v in queries:
-        results.append(manhattan_distance(coordinates[u], coordinates[v]))
-    return results
+# 读入节点数和查询数
+n, q = map(int, input().split())
+tree = [[] for _ in range(n+1)]
 
-# 示例用法
-if __name__ == "__main__":
-    n = int(input("请输入树的节点数: "))
-    q = int(input("请输入查询次数: "))
-    queries = [tuple(map(int, input().split())) for _ in range(q)]
-    results = process_queries(n, queries)
-    for res in results:
-        print(res)
+# 构造树（无向图）
+for _ in range(n - 1):
+    u, v = map(int, input().split())
+    tree[u].append(v)
+    tree[v].append(u)
+
+x_coord = [0] * (n + 1)
+y_coord = [0] * (n + 1)
+
+def bfs(root):
+    dq = deque()
+    dq.append((root, 0))    # (当前节点, 父节点)
+
+    while dq:
+        node, parent = dq.popleft()
+        children = sorted([
+            v for v in tree[node] if v != parent
+        ])
+
+        for i, child in enumerate(children):
+            if i == 0:  # 左儿子
+                x_coord[child] = x_coord[node] - 1
+                y_coord[child] = y_coord[node] - 1
+            else:       # 右儿子
+                x_coord[child] = x_coord[node] + 1
+                y_coord[child] = y_coord[node] - 1
+            dq.append((child, node))
+
+# 计算树的坐标
+bfs(1)
+
+# 处理查询
+output = []
+for _ in range(q):
+    u, v = map(int, input().split())
+    output.append(str(abs(x_coord[u] - x_coord[v]) + abs(y_coord[u] - y_coord[v])))
+
+sys.stdout.write("\n".join(output) + "\n")
