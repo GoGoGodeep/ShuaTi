@@ -24,4 +24,3 @@ lass Solution:
                 result.append(val)
 
         return result
-
