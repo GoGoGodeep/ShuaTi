@@ -4,7 +4,7 @@ class Solution:
         def dfs(node, lower=float('-inf'), upper=float('inf')):
             if not node:
                 return True
-
+ 
             val = node.val
             if val <= lower or val >= upper:
                 return False
