@@ -1,14 +1,8 @@
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
 class Solution:
     def deleteNode(self, root: Optional[TreeNode], key: int) -> Optional[TreeNode]:
         if not root:
             return root
-        
+
         if root.val == key:
             if not root.left and not root.right:
                 return None
@@ -17,14 +11,17 @@ class Solution:
             elif not root.right:
                 return root.left
             else:
+                # 找到右子树中最小的节点
                 cur = root.right
                 while cur.left:
                     cur = cur.left
+                # 将被删除节点的左子树接到这个最小节点上
                 cur.left = root.left
+                # 返回右子树作为新的根节点
                 return root.right
-        if root.val > key:
+        elif root.val > key:
             root.left = self.deleteNode(root.left, key)
-        if root.val < key:
+        elif root.val < key:
             root.right = self.deleteNode(root.right, key)
-        
-        return root
+
+        return root 
