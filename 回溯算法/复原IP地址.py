@@ -3,8 +3,6 @@ class Solution:
         result = []
 
         def is_true(s, start, end):
-            if start > end:
-                return False
             if s[start] == '0' and start != end:
                 return False
             num = int(s[start:end+1])
@@ -13,6 +11,9 @@ class Solution:
         def backtrack(start, path):
             if start == len(s) and len(path) == 4:
                 result.append('.'.join(path))
+                return
+            
+            if len(path) > 4:
                 return
 
             for end in range(start, min(start + 3, len(s))):
@@ -25,3 +26,4 @@ class Solution:
         backtrack(0, [])
 
         return result
+            
