@@ -3,7 +3,7 @@ class Solution:
         result = []
         
         chessboard = [['.' for _ in range(n)] for _ in range(n)]
-
+ 
         def is_valid(row, col):
             # 检查列
             for i in range(row):
