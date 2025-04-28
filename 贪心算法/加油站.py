@@ -8,11 +8,11 @@ class Solution:
             curr += gas[i] - cost[i]
             total += gas[i] - cost[i]
 
-            if curr < 0:
-                start = i + 1
+            if curr < 0:    # 当前累计剩余油量curr小于0，说明从当前start开始无法到达
+                start = i + 1 
                 curr = 0
 
-        if total < 0:
+        if total < 0:   # 总剩余油量小于0，说明无法绕一圈
             return -1
         
         return start
